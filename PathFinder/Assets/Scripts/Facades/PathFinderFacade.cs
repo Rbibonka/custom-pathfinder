@@ -1,4 +1,5 @@
 using PathFind;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PathFinderFacade
@@ -26,8 +27,12 @@ public class PathFinderFacade
         pathFinderVisualization.Initialize(pathFinderGrid, pathFinderConfig);
     }
 
-    public void FindPath(Vector3 startPoint, Vector3 endPoint)
+    public List<Vector3> FindPath(Vector3 startPoint, Vector3 endPoint)
     {
-        pathFinderVisualization.SetPath(pathfinderAStar.FindPath(startPoint, endPoint));
+        var path = pathfinderAStar.FindPath(startPoint, endPoint);
+
+        pathFinderVisualization.SetPath(path);
+
+        return path;
     }
 }
