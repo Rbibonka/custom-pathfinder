@@ -32,7 +32,7 @@ public class Bootstrap : MonoBehaviour
         pathFinderFacade = new(pathFinderGridTransform, pathFinderVisualization, pathFinderConfig);
         pathFinderFacade.CreateGrid();
 
-        playersSpawner = new(playerPrefab, playerConfig);
+        playersSpawner = new(playerPrefab, playerConfig, pathFinderConfig.ObstacleMask);
         var players = playersSpawner.Spawn();
 
         foreach (var player in players)
@@ -43,13 +43,5 @@ public class Bootstrap : MonoBehaviour
 
             player.SetMovePoints(path.ToArray());
         }
-    }
-
-    [ContextMenu("dasdsadas")]
-    private void Awawawaw()
-    {
-        var path = pathFinderFacade.FindPath(transforms[0].position, transforms[1].position);
-
-        //playerWaypointMover.SetPoints(path.ToArray());
     }
 }

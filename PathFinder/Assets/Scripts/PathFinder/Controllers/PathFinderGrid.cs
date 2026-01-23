@@ -61,11 +61,6 @@ namespace PathFind
                     RaycastHit hit;
                     if (Physics.Raycast(worldPoint + Vector3.up * 5f, Vector3.down, out hit, 10f))
                     {
-                        if (hit.collider.gameObject.layer == 4)
-                        {
-
-                        }
-
                         if (((1 << hit.collider.gameObject.layer) & obstacleMask) != 0)
                         {
                             walkable = false;
