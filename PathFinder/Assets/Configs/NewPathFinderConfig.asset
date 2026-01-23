@@ -16,4 +16,4 @@ MonoBehaviour:
   <NodeRadius>k__BackingField: 0.1
   <ObstacleMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 16
+    m_Bits: 128

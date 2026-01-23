@@ -14,7 +14,6 @@ namespace PathFind
         {
             this.grid = grid;
             this.pathFinderConfig = pathFinderConfig;
-
         }
 
         public void SetPath(List<Vector3> path)
