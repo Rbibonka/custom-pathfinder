@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 831bda731130ba74ab043942945faa8d, type: 3}
   m_Name: NewPlayerConfig
   m_EditorClassIdentifier: 
-  <PlayerPrefab>k__BackingField: {fileID: 368441312706817410, guid: 3abe024497a1c1e4fa3e74c8710f2dcb, type: 3}
-  <Speed>k__BackingField: 1
-  <RotationSpeed>k__BackingField: 6
+  <PlayerPrefab>k__BackingField: {fileID: 4298244507471282340, guid: 384b733be6a0a2f45a3f087baf86f095, type: 3}
+  <Speed>k__BackingField: 3
+  <RotationSpeed>k__BackingField: 10
   <PointReachDistance>k__BackingField: 0.35
-  <AvoidanceRadius>k__BackingField: 1
+  <AvoidanceRadius>k__BackingField: 0.5
   <AvoidanceForce>k__BackingField: 2
   <MinAvoidDistance>k__BackingField: 0
   <AvoidanceSmoothTime>k__BackingField: 0
