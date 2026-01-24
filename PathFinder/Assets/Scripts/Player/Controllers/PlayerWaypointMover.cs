@@ -22,12 +22,15 @@ public class MoverByPoints
     public void SetPoints(Vector3[] points)
     {
         this.points = points;
+        currentIndex = 0;
     }
 
     public void Update()
     {
         if (points == null || points.Length == 0)
+        {
             return;
+        }
 
         Vector3 currentPos = transform.position;
         currentPos.y = fixedY;

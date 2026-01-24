@@ -27,7 +27,7 @@ namespace PathFind
 
             if (!startNode.Walkable || !targetNode.Walkable)
             {
-                Debug.LogWarning("Start or Target node is not walkable");
+                Debug.LogWarning("Start or Target node is not walkable" + startPos);
                 return null;
             }
 
