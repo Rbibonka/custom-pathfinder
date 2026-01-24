@@ -1,5 +1,3 @@
-using System;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public enum Surfces

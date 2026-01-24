@@ -1,14 +1,9 @@
 using PathFind;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [DefaultExecutionOrder(-1)]
 public class Bootstrap : MonoBehaviour
 {
-    [SerializeField]
-    private Transform pathFinderGridTransform;
-
     [SerializeField]
     private PathFinderConfig pathFinderConfig;
 
