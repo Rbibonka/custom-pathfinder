@@ -13,7 +13,7 @@ public class Bootstrap : MonoBehaviour
     private PathFinderConfig pathFinderConfig;
 
     [SerializeField]
-    private SpawnConfig spawnConfig;
+    private LevelConfig levelConfig;
 
     [SerializeField]
     private PathFinderVisualization pathFinderVisualization;
@@ -29,10 +29,12 @@ public class Bootstrap : MonoBehaviour
 
     private void Awake()
     {
-        pathFinderFacade = new(pathFinderGridTransform, pathFinderVisualization, pathFinderConfig);
+        var level = Instantiate(levelConfig.Level, Vector3.zero, Quaternion.identity);
+
+        pathFinderFacade = new(level.transform, pathFinderVisualization, pathFinderConfig);
         pathFinderFacade.CreateGrid();
 
-        playersSpawner = new(playerConfig, spawnConfig);
+        playersSpawner = new(playerConfig, level.PlayerSpawnPoints);
         var players = playersSpawner.Spawn();
 
         GameLoop gameLoop = new(players, mouseClickHandler, pathFinderFacade);

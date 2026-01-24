@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ab381a41eb5ee48bf7c39b235d4010, type: 3}
   m_Name: NewPathFinderConfig
   m_EditorClassIdentifier: 
-  <GridWorldSize>k__BackingField: {x: 10, y: 10}
+  <GridWorldSize>k__BackingField: {x: 30, y: 45}
   <NodeRadius>k__BackingField: 0.1
   <ObstacleMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 128
+  <PlaneMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 256
