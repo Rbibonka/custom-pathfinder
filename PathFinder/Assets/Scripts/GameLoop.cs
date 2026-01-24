@@ -3,10 +3,6 @@ using System.Collections.Generic;
 
 public class GameLoop : IDisposable
 {
-    private List<Player> player;
-    private MouseClickHandler mouseClickHandler;
-    private PathFinderFacade pathFinderFacade;
-
     private bool disposed;
 
     private PlayersPathsSetter playersPathsManager;
@@ -16,10 +12,6 @@ public class GameLoop : IDisposable
         MouseClickHandler mouseClickHandler,
         PathFinderFacade pathFinderFacade)
     {
-        this.player = player;
-        this.mouseClickHandler = mouseClickHandler;
-        this.pathFinderFacade = pathFinderFacade;
-
         playersPathsManager = new(mouseClickHandler, pathFinderFacade);
     }
 
@@ -29,6 +21,8 @@ public class GameLoop : IDisposable
         {
             return;
         }
+
+        playersPathsManager.Dispose();
 
         disposed = true;
     }

@@ -2,8 +2,17 @@ using UnityEngine;
 
 public class Player : PoolableObject
 {
+    [SerializeField]
+    private Animator animator;
+
+    [SerializeField]
+    private LayerMask groundMask;
+
     private MoverByPoints moverByPoints;
     private PlayerConfig playerConfig;
+
+    private PlayerGroundChecker playerGroundChecker;
+    private PlayerView playerView;
 
     private bool canMove;
 
@@ -12,6 +21,8 @@ public class Player : PoolableObject
         this.playerConfig = playerConfig;
 
         moverByPoints = new(transform, playerConfig);
+        playerGroundChecker = new(transform, groundMask);
+        playerView = new(animator);
     }
 
     public void SetMovePoints(Vector3[] points)
@@ -28,12 +39,30 @@ public class Player : PoolableObject
             return;
         }
 
-        moverByPoints.Update();
+        var currentSurface = playerGroundChecker.GetCurrentPlace();
+
+        if (currentSurface == Surfces.Swamp)
+        {
+            playerView.ViewSwampWalk();
+        }
+        else if (currentSurface == Surfces.Road)
+        {
+            playerView.ViewWalk();
+        }
+        else
+        {
+            Debug.LogError("Wrong road");
+        }
+
+        if (!moverByPoints.TryMove(currentSurface))
+        {
+            playerView.ViewIdle();
+        }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, playerConfig.AvoidanceRadius);
-    }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawWireSphere(transform.position, playerConfig.AvoidanceRadius);
+    //}
 }

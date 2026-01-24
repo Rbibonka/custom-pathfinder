@@ -5,7 +5,7 @@ public class MoverByPoints
     private Vector3[] points;
     private int currentIndex;
 
-    private const float fixedY = 0.5f;
+    private const float fixedY = 0f;
 
     private Vector3 smoothedAvoidance;
     private Vector3 avoidanceVelocity;
@@ -25,11 +25,12 @@ public class MoverByPoints
         currentIndex = 0;
     }
 
-    public void Update()
+    public bool TryMove(Surfces surfces)
     {
-        if (points == null || points.Length == 0)
+        if (points == null
+            || points.Length == 0)
         {
-            return;
+            return false;
         }
 
         Vector3 currentPos = transform.position;
@@ -49,8 +50,10 @@ public class MoverByPoints
             if (currentIndex >= points.Length)
             {
                 currentIndex = points.Length - 1;
+                return false;
             }
-            return;
+
+            return true;
         }
 
         Vector3 moveDir = toTarget.normalized;
@@ -60,7 +63,17 @@ public class MoverByPoints
         Vector3 finalDir = moveDir + avoidance;
         finalDir = Vector3.ClampMagnitude(finalDir, 1f);
 
-        Vector3 nextPos = currentPos + finalDir * playerConfig.Speed * Time.deltaTime;
+        Vector3 nextPos;
+
+        if (surfces == Surfces.Road)
+        {
+            nextPos = currentPos + finalDir * playerConfig.Speed * Time.deltaTime;
+        }
+        else
+        {
+            nextPos = currentPos + finalDir * (playerConfig.Speed / 3f) * Time.deltaTime;
+        }
+
         nextPos.y = fixedY;
         transform.position = nextPos;
 
@@ -73,6 +86,8 @@ public class MoverByPoints
                 playerConfig.RotationSpeed * Time.deltaTime
             );
         }
+
+        return true;
     }
 
     private Vector3 CalculateAvoidance()

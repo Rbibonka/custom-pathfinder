@@ -6,7 +6,6 @@ namespace PathFind
     public class PathFinderVisualization : MonoBehaviour
     {
         private PathFinderGrid grid;
-        [SerializeField]
         private List<Vector3> pathFinderPath;
         private PathFinderConfig pathFinderConfig;
 
