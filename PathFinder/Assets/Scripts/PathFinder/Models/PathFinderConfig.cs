@@ -11,4 +11,7 @@ public class PathFinderConfig : ScriptableObject
 
     [field: SerializeField]
     public LayerMask ObstacleMask { get; private set; }
+
+    [field: SerializeField]
+    public LayerMask PlaneMask { get; private set; }
 }

@@ -5,45 +5,26 @@ public class PlayersObjectPoolSpawner
 {
     private PlayerObjectPool playerObjectPool;
     private PlayerConfig playerConfig;
-    private SpawnConfig spawnConfig;
+    private Transform[] spawnPoints;
 
-    public PlayersObjectPoolSpawner(PlayerConfig playerConfig, SpawnConfig spawnConfig)
+    public PlayersObjectPoolSpawner(PlayerConfig playerConfig, Transform[] spawnPoints)
     {
         this.playerConfig = playerConfig;
-        this.spawnConfig = spawnConfig;
+        this.spawnPoints = spawnPoints;
 
         playerObjectPool = new(playerConfig.PlayerPrefab);
     }
 
     public List<Player> Spawn()
     {
-        List<Player> players = new List<Player>(spawnConfig.PlayerCount);
+        List<Player> players = new List<Player>(spawnPoints.Length);
 
-        for (int i = 0; i < spawnConfig.PlayerCount; i++)
+        for (int i = 0; i < spawnPoints.Length; i++)
         {
             var player = playerObjectPool.GetFromPool();
             player.Initialize(playerConfig);
 
-            bool positionIsValid;
-
-            do
-            {
-                var randomPosition = new Vector3(
-                    Random.Range(-5f, 5f),
-                    0.5f,
-                    Random.Range(-5f, 5f)
-                );
-
-                positionIsValid = !Physics.CheckSphere(
-                    randomPosition,
-                    playerConfig.AvoidanceRadius,
-                    spawnConfig.ObstaclesLayers
-                );
-
-                player.transform.position = randomPosition;
-
-            } while (!positionIsValid);
-
+            player.transform.position = spawnPoints[i].position;
             players.Add(player);
         }
 

@@ -8,6 +8,7 @@ namespace PathFind
         private Vector2 gridWorldSize = new Vector2(10, 10);
         private float nodeRadius = 0.1f;
         private LayerMask obstacleMask;
+        private LayerMask planeMask;
 
         public GridNode[,] Grid => grid;
 
@@ -25,6 +26,7 @@ namespace PathFind
             gridWorldSize = pathFinderConfig.GridWorldSize;
             nodeRadius = pathFinderConfig.NodeRadius;
             obstacleMask = pathFinderConfig.ObstacleMask;
+            planeMask = pathFinderConfig.PlaneMask;
 
             nodeDiameter = nodeRadius * 2;
             gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
@@ -56,7 +58,7 @@ namespace PathFind
                         + Vector3.right * (x * nodeDiameter + nodeRadius)
                         + Vector3.forward * (y * nodeDiameter + nodeRadius);
 
-                    bool walkable = true;
+                    bool walkable = false;
 
                     RaycastHit hit;
                     if (Physics.Raycast(worldPoint + Vector3.up * 5f, Vector3.down, out hit, 10f))
@@ -65,8 +67,11 @@ namespace PathFind
                         {
                             walkable = false;
                         }
+                        else if (((1 << hit.collider.gameObject.layer) & planeMask) != 0)
+                        {
+                            walkable = true;
+                        }
                     }
-
                     grid[x, y] = new GridNode(walkable, worldPoint, x, y);
                 }
             }

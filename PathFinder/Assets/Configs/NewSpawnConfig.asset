@@ -12,7 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22b2cd092a20da49b6f0d8eea10864b, type: 3}
   m_Name: NewSpawnConfig
   m_EditorClassIdentifier: 
-  <PlayerCount>k__BackingField: 3
-  <ObstaclesLayers>k__BackingField:
-    serializedVersion: 2
-    m_Bits: 128
+  <Level>k__BackingField: {fileID: 4224713159861354396, guid: 419c132b52afa4e488a0673387e31684, type: 3}
