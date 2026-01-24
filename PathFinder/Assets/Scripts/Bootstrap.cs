@@ -1,4 +1,5 @@
 using PathFind;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,36 +13,28 @@ public class Bootstrap : MonoBehaviour
     private PathFinderConfig pathFinderConfig;
 
     [SerializeField]
+    private SpawnConfig spawnConfig;
+
+    [SerializeField]
     private PathFinderVisualization pathFinderVisualization;
-
-    [SerializeField]
-    private Transform[] transforms;
-
-    [SerializeField]
-    private Player playerPrefab;
 
     [SerializeField]
     private PlayerConfig playerConfig;
 
-    private PathFinderFacade pathFinderFacade;
+    [SerializeField]
+    private MouseClickHandler mouseClickHandler;
 
-    private PlayerObjectPoolSpawner playersSpawner;
+    private PathFinderFacade pathFinderFacade;
+    private PlayersObjectPoolSpawner playersSpawner;
 
     private void Awake()
     {
         pathFinderFacade = new(pathFinderGridTransform, pathFinderVisualization, pathFinderConfig);
         pathFinderFacade.CreateGrid();
 
-        playersSpawner = new(playerPrefab, playerConfig, pathFinderConfig.ObstacleMask);
+        playersSpawner = new(playerConfig, spawnConfig);
         var players = playersSpawner.Spawn();
 
-        foreach (var player in players)
-        {
-            var r = Random.Range(0, transforms.Length - 1);
-
-            var path = pathFinderFacade.FindPath(player.transform.position, transforms[r].position);
-
-            player.SetMovePoints(path.ToArray());
-        }
+        GameLoop gameLoop = new(players, mouseClickHandler, pathFinderFacade);
     }
 }

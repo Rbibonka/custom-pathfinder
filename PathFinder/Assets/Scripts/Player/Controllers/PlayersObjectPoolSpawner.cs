@@ -1,25 +1,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerObjectPoolSpawner
+public class PlayersObjectPoolSpawner
 {
     private PlayerObjectPool playerObjectPool;
     private PlayerConfig playerConfig;
-    private LayerMask obstacleLayer;
+    private SpawnConfig spawnConfig;
 
-    public PlayerObjectPoolSpawner(Player prefab, PlayerConfig playerConfig, LayerMask obstacleLayer)
+    public PlayersObjectPoolSpawner(PlayerConfig playerConfig, SpawnConfig spawnConfig)
     {
         this.playerConfig = playerConfig;
-        this.obstacleLayer = obstacleLayer;
+        this.spawnConfig = spawnConfig;
 
-        playerObjectPool = new(prefab);
+        playerObjectPool = new(playerConfig.PlayerPrefab);
     }
 
     public List<Player> Spawn()
     {
-        List<Player> players = new List<Player>(3);
+        List<Player> players = new List<Player>(spawnConfig.PlayerCount);
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < spawnConfig.PlayerCount; i++)
         {
             var player = playerObjectPool.GetFromPool();
             player.Initialize(playerConfig);
@@ -37,10 +37,10 @@ public class PlayerObjectPoolSpawner
                 positionIsValid = !Physics.CheckSphere(
                     randomPosition,
                     playerConfig.AvoidanceRadius,
-                    obstacleLayer
+                    spawnConfig.ObstaclesLayers
                 );
 
-                player.transform.position = new Vector3(Random.Range(-5f, 5f), 0.5f, Random.Range(-5f, 5f));
+                player.transform.position = randomPosition;
 
             } while (!positionIsValid);
 
@@ -48,10 +48,5 @@ public class PlayerObjectPoolSpawner
         }
 
         return players;
-    }
-
-    public void Despawn(Player player)
-    {
-        playerObjectPool.SetToPool(player);
     }
 }

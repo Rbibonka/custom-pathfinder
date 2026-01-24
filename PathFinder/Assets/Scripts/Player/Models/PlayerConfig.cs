@@ -3,6 +3,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerConfig", menuName = "PathFinder/Player Config")]
 public class PlayerConfig : ScriptableObject
 {
+    [field: Header("Prefab")]
+    [field: SerializeField()]
+    public Player PlayerPrefab { get; private set; }
+
     [field: Header("Movement")]
     [field: SerializeField()]
     public float Speed { get; private set; } = 3f;
