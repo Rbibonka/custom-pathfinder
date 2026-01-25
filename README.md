@@ -28,42 +28,17 @@
   <img src="PathFinder/Assets/ReadmeContent/MainDemo.gif" alt="MainDemo" />
 </p>
 
-#### Смерть игрока от ловушеки (Нужно быть аккуратнее):
+### Поиск пути:
+#### Алгоритм для поиска пути используется А* путь строится только на торпинке
 <p align="center">
-  <img src="Simple-Platformer/Assets/PreviewF/Dead.gif" alt="Dead" />
+  <img src="PathFinder/Assets/ReadmeContent/PathFinderDemo.gif" alt="PathFinderDemo.gif" />
 </p>
 
-#### Сбор валюты игроком (А зачем?):
+### Движения и анимации
+#### В зависимости от повехронсти на которой стоит юнит его анимация и скорость будут изменяться.
 <p align="center">
-  <img src="Simple-Platformer/Assets/PreviewF/TakeApple.gif" alt="TakeApple" />
+  <img src="PathFinder/Assets/ReadmeContent/SurfaceDemo.gif" alt="SurfaceDemo.gif" />
 </p>
 
-#### Время мести (Избиение врага):
-<p align="center">
-  <img src="Simple-Platformer/Assets/PreviewF/GiveDamage.gif" alt="GiveDamage" />
-</p>
-
-#### Прыжок веры (Рискнули бы?):
-<p align="center">
-  <img height="412" width="342" src="Simple-Platformer/Assets/PreviewF/LeapOfJump.png" alt="LeapOfJump" />
-</p>
-
-#### Менее интрегующий вылет с карты с последующей смертью:
-<p align="center">
-  <img height="412" width="342" src="Simple-Platformer/Assets/PreviewF/DeadFromSpace.gif" alt="DeadFromSpace" />
-</p>
-
-### Используемые технологии
-
-<div align="center">
-  <img src="https://www.svgrepo.com/show/331626/unity.svg" height="40" alt="Unity logo" />
-  <img width="12" />
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Logo_C_sharp.svg/910px-Logo_C_sharp.svg.png" height="40" alt="C# logo" />
-  <img width="12" />
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2V4Em4MiwRBTOsNO4Jo-QzpmvnNjyesUAvg&s" height="40" alt="DOTween logo" />
-  <img width="12" />
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1365px-Figma-logo.svg.png" height="40" alt="Figma logo" />
-  <img width="12" />
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Logo_Aseprite.svg/1911px-Logo_Aseprite.svg.png" height="40" alt="Aseprite logo"  />
-</div>
-
+---
+### Также в игре есть конфиги настройки уровней, построение пути и визуализация в editor, юниты обходят друг друга и многое другое, но это уже в билде
